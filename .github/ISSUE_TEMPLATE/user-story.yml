@@ -1,0 +1,40 @@
+name: User story
+description: Create an implementation item linked to the product backlog
+title: "[PB-XX] "
+labels: ["type: feature", "status: backlog"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: Use “As a…, I want…, so that…”
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Add objective, testable checklist items.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate
+      description: Story points agreed by the team.
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and notes

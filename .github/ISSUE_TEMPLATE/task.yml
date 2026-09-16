@@ -1,0 +1,24 @@
+name: Technical or project task
+description: Track delivery, CI, documentation, database, or Scrum work
+title: "[TASK] "
+labels: ["type: task", "status: backlog"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Completion criteria
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Expected evidence
+      description: Tests, workflow run, screenshot, report output, or documentation.
