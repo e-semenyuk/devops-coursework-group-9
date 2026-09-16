@@ -71,6 +71,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.m
 | Eugene Semenyuk | [@e-semenyuk](https://github.com/e-semenyuk) |
 | Alexandra Gombitova | [@AlexandraGombitova](https://github.com/AlexandraGombitova) |
 | Bohdan Katsevych | To be confirmed |
-| Jerry Ebanks | To be confirmed |
+| Jerry Ebanks | [@40799682](https://github.com/40799682) |
 
 Additional members and formal Scrum roles will be recorded when confirmed by the team.
