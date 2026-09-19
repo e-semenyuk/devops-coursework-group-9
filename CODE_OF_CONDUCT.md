@@ -46,7 +46,7 @@ Concerns should first be discussed privately and respectfully with the people in
 | --- | --- |
 | Eugene Semenyuk | `e-semenyuk` |
 | Alexandra Gombitova | `AlexandraGombitova` |
-| Bohdan Katsevych | To be confirmed |
-| Jerry Ebanks | To be confirmed |
+| Bohdan Katsevych | `bkatsevych003` |
+| Jerry Ebanks | `40799682` |
 
 The team will update this document when remaining usernames, members, and Scrum roles are confirmed. Changes to this agreement require team review through a Pull Request.
