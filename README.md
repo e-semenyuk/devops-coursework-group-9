@@ -74,4 +74,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.m
 | Jerry Ebanks | [@40799682](https://github.com/40799682) |
 | Trust Okunfeyiwa | [@Trust1Ok](https://github.com/Trust1Ok) |
 | Mashri Alhumidi | [@mshary-web](https://github.com/mshary-web) |
+
 Additional members and formal Scrum roles will be recorded when confirmed by the team.
