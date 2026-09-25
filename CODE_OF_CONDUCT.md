@@ -42,11 +42,13 @@ Concerns should first be discussed privately and respectfully with the people in
 
 ## Membership
 
-| Member | GitHub username |
+| Member | GitHub |
 | --- | --- |
-| Eugene Semenyuk | `e-semenyuk` |
-| Alexandra Gombitova | `AlexandraGombitova` |
-| Bohdan Katsevych | `bkatsevych003` |
-| Jerry Ebanks | `40799682` |
+| Eugene Semenyuk | [@e-semenyuk](https://github.com/e-semenyuk) |
+| Alexandra Gombitova | [@AlexandraGombitova](https://github.com/AlexandraGombitova) |
+| Bohdan Katsevych | [@bkatsevych003](https://github.com/bkatsevych003)|
+| Jerry Ebanks | [@40799682](https://github.com/40799682) |
+| Trust Okunfeyiwa | [@Trust1Ok](https://github.com/Trust1Ok) |
+| Mashri Alhumidi | [@mshary-web](https://github.com/mshary-web) |
 
 The team will update this document when remaining usernames, members, and Scrum roles are confirmed. Changes to this agreement require team review through a Pull Request.
