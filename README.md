@@ -1,6 +1,9 @@
 # Population Reporting System
 
-[![CI](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml/badge.svg)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml)
+[![Master CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=master&label=master)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Develop CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=develop&label=develop)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Adevelop)
+![GitHub Release](https://img.shields.io/github/v/release/e-semenyuk/devops-coursework-group-9)
+![GitHub License](https://img.shields.io/github/license/e-semenyuk/devops-coursework-group-9)
 
 Coursework repository for **SET09803 DevOps Global Online**, **Group 9**.
 
