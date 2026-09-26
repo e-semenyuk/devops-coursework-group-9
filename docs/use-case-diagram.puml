@@ -1,0 +1,94 @@
+@startuml
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Organisation User" as User
+
+rectangle "Population Reporting System" {
+
+    package "Country Reports" {
+        usecase UC01 as "PB-01\nAll countries\nin the world"
+        usecase UC02 as "PB-02\nCountries in\na continent"
+        usecase UC03 as "PB-03\nCountries in\na region"
+        usecase UC04 as "PB-04\nTop N countries\nin the world"
+        usecase UC05 as "PB-05\nTop N countries\nin a continent"
+        usecase UC06 as "PB-06\nTop N countries\nin a region"
+
+        UC01 -[hidden]down- UC02
+        UC02 -[hidden]down- UC03
+        UC03 -[hidden]down- UC04
+        UC04 -[hidden]down- UC05
+        UC05 -[hidden]down- UC06
+    }
+
+    package "City Reports" {
+        usecase UC07 as "PB-07\nAll cities\nin the world"
+        usecase UC08 as "PB-08\nCities in\na continent"
+        usecase UC09 as "PB-09\nCities in\na region"
+        usecase UC10 as "PB-10\nCities in\na country"
+        usecase UC11 as "PB-11\nCities in\na district"
+        usecase UC12 as "PB-12\nTop N cities\nin the world"
+        usecase UC13 as "PB-13\nTop N cities\nin a continent"
+        usecase UC14 as "PB-14\nTop N cities\nin a region"
+        usecase UC15 as "PB-15\nTop N cities\nin a country"
+        usecase UC16 as "PB-16\nTop N cities\nin a district"
+
+        UC07 -[hidden]down- UC08
+        UC08 -[hidden]down- UC09
+        UC09 -[hidden]down- UC10
+        UC10 -[hidden]down- UC11
+        UC11 -[hidden]down- UC12
+        UC12 -[hidden]down- UC13
+        UC13 -[hidden]down- UC14
+        UC14 -[hidden]down- UC15
+        UC15 -[hidden]down- UC16
+    }
+
+    package "Capital City Reports" {
+        usecase UC17 as "PB-17\nAll capital cities\nin the world"
+        usecase UC18 as "PB-18\nCapital cities in\na continent"
+        usecase UC19 as "PB-19\nCapital cities in\na region"
+        usecase UC20 as "PB-20\nTop N capital cities\nin the world"
+        usecase UC21 as "PB-21\nTop N capital cities\nin a continent"
+        usecase UC22 as "PB-22\nTop N capital cities\nin a region"
+
+        UC17 -[hidden]down- UC18
+        UC18 -[hidden]down- UC19
+        UC19 -[hidden]down- UC20
+        UC20 -[hidden]down- UC21
+        UC21 -[hidden]down- UC22
+    }
+
+    package "Population Reports" {
+        usecase UC23 as "PB-23\nPopulation by\ncontinent"
+        usecase UC24 as "PB-24\nPopulation by\nregion"
+        usecase UC25 as "PB-25\nPopulation by\ncountry"
+
+        UC23 -[hidden]down- UC24
+        UC24 -[hidden]down- UC25
+    }
+
+    package "Population Totals" {
+        usecase UC26 as "PB-26\nWorld population"
+        usecase UC27 as "PB-27\nContinent population"
+        usecase UC28 as "PB-28\nRegion population"
+        usecase UC29 as "PB-29\nCountry population"
+        usecase UC30 as "PB-30\nDistrict population"
+        usecase UC31 as "PB-31\nCity population"
+
+        UC26 -[hidden]down- UC27
+        UC27 -[hidden]down- UC28
+        UC28 -[hidden]down- UC29
+        UC29 -[hidden]down- UC30
+        UC30 -[hidden]down- UC31
+    }
+
+    package "Language Report" {
+        usecase UC32 as "PB-32\nMajor language\npopulation report"
+    }
+}
+
+@enduml
