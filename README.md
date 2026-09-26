@@ -23,6 +23,17 @@ The repository contains the agreed project foundation:
 
 Feature implementation will be assigned through GitHub Issues so every contribution is attributable and reviewable.
 
+## Project reports 
+
+Please note that instead of providing a screenshot of the results, we have included a link to a file containing the logs.
+
+> 1 requirement of 32 has been implemented, which is 3.125%.
+
+| ID    | Name | Met  | Link |
+|-------|------|------|------------|
+| 1     | All the countries in the world organised by largest population to smallest. | Yes | [View Results](/docs/reports/pb-01.md#Logs) |
+
+
 ## Requirements
 
 - JDK 17
@@ -34,15 +45,28 @@ Feature implementation will be assigned through GitHub Issues so every contribut
 ```bash
 mvn clean verify
 java -jar target/population-reporting-system.jar
+java -jar target/population-reporting-system.jar --countries-by-population
 ```
+
+The `--countries-by-population` report lists every country with its code, name, continent, region, population, and capital, ordered from largest to smallest population.
 
 ## Docker
 
-Start the database and application:
+To build the Java image and run a report against MySQL, use the report command as the app's argument. For example:
+
+```bash
+docker compose run --build --rm app --countries-by-population
+```
+
+Compose starts MySQL if it is not already running and waits for it to become healthy. The report runs in the foreground, prints its results in the terminal, and its temporary app container is removed when it finishes. Run the command again after changing Java code to rebuild and test the updated report. Replace `--countries-by-population` with another supported report command as features are added.
+
+To check only that the app can connect to MySQL, run:
 
 ```bash
 docker compose up --build
 ```
+
+The app's default command is `--healthcheck`: it prints `Database connection successful` and exits. MySQL keeps running, so the foreground Compose command remains attached; press `Ctrl+C` to stop it. You can also run `docker compose down` to stop the services. Both methods preserve the database volume and imported data.
 
 The application reads the following environment variables:
 
@@ -55,6 +79,8 @@ The application reads the following environment variables:
 | `DB_PASSWORD` | `example` | Database password |
 
 Place the coursework-provided SQL import file in `database/` before starting Compose. SQL data files are intentionally not committed until their distribution terms and required version are confirmed.
+
+MySQL imports SQL files from `database/` only when initializing a new database volume. You do not need to remove the volume for normal development or after changing Java code. To deliberately recreate the database and re-import the SQL file, run `docker compose down -v` and then start Compose again; this permanently deletes the data stored in the volume.
 
 ## Working agreement
 
