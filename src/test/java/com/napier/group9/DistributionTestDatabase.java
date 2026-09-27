@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
-/** Synthetic values, deliberately including large totals and inconsistent city data. */
+/** Test data with large totals and mismatched populations. */
 final class DistributionTestDatabase implements AutoCloseable {
     private final String url = "jdbc:h2:mem:" + UUID.randomUUID() + ";MODE=MySQL";
     private final Connection keeper = DriverManager.getConnection(url);

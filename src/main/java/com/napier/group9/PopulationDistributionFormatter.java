@@ -4,7 +4,6 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Locale;
 
-/** Displays totals and percentages without changing inconsistent source data. */
 public final class PopulationDistributionFormatter {
     private PopulationDistributionFormatter() {
     }
@@ -20,6 +19,7 @@ public final class PopulationDistributionFormatter {
                     group.name(), group.totalPopulation(), group.cityPopulation(), group.cityPercentage(),
                     group.nonCityPopulation(), group.nonCityPercentage());
         }
+        // City counts can exceed country totals in the source data.
         for (PopulationDistribution group : groups) {
             if (group.cityPopulation() > group.totalPopulation()) {
                 output.printf("Warning: %s has city population greater than its country total; "

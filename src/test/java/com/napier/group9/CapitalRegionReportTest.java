@@ -10,7 +10,7 @@ class CapitalRegionReportTest {
     @Test
     void filtersRegionWithinAContinentAndHandlesSpaces() throws Exception {
         try (CapitalTestDatabase database = new CapitalTestDatabase()) {
-            // Same continent, different region: continent filtering would be incorrect here.
+            // Same continent, different region.
             database.execute("UPDATE country SET Continent = 'Europe' WHERE Code = 'CAN'");
             assertEquals(List.of(new CapitalCity("London", "United Kingdom", 3000000),
                     new CapitalCity("Dublin", "Ireland", 2000000)),

@@ -3,7 +3,6 @@ package com.napier.group9;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/** Country totals and recorded city populations for one geographic group. */
 public record PopulationDistribution(String name, long totalPopulation, long cityPopulation) {
     public long nonCityPopulation() {
         return totalPopulation - cityPopulation;

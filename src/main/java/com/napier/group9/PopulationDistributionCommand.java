@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.List;
 
-/** Runs distribution reports; 0 = success, 2 = invalid input, 1 = database failure. */
+/** Exit codes: 0 success, 1 database error, 2 invalid input. */
 final class PopulationDistributionCommand {
     private PopulationDistributionCommand() {
     }

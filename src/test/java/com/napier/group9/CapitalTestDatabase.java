@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
-/** Synthetic test populations, not real statistics; UK/Ireland examples plus Canada to test filtering. */
+/** Test data, not real population figures. */
 final class CapitalTestDatabase implements AutoCloseable {
     private final String url = "jdbc:h2:mem:" + UUID.randomUUID() + ";MODE=MySQL";
     private final Connection keeper = DriverManager.getConnection(url);
