@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Reads capital cities from the world database, ordered by city population. */
 public final class CapitalCityRepository {
     private final ConnectionFactory connections;
 

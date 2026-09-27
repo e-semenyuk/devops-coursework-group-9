@@ -4,7 +4,6 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Locale;
 
-/** Renders city reports with all four required columns. */
 public final class CityReportFormatter {
     private CityReportFormatter() {
     }

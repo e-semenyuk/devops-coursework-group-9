@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Queries cities and their country names from the world database. */
 public final class CityPopulationRepository {
     private final ConnectionFactory connections;
 

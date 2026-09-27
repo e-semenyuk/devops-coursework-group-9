@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Aggregates cities per country before joining, so country totals are counted once. */
+/** Count each country's population once. */
 public final class PopulationDistributionRepository {
     private final ConnectionFactory connections;
 
@@ -28,7 +28,11 @@ public final class PopulationDistributionRepository {
         return find("country.Region", "country.Region");
     }
 
-    // Expressions are fixed by the report methods, never supplied by the caller.
+    public List<PopulationDistribution> findByCountry() throws SQLException {
+        return find("country.Name", "country.Name, country.Code");
+    }
+
+    // Column names come from report methods, not user input.
     private List<PopulationDistribution> find(String nameColumn, String groupColumns) throws SQLException {
         String sql = "SELECT " + nameColumn + """
                  AS AreaName, SUM(country.Population) AS TotalPopulation,

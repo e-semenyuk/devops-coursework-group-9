@@ -4,7 +4,6 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Locale;
 
-/** Consistent, locale-independent output for capital-city reports. */
 public final class CapitalReportFormatter {
     private CapitalReportFormatter() {
     }

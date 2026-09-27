@@ -50,4 +50,3 @@ class DistributionFormatterTest {
         return output.toString(StandardCharsets.UTF_8);
     }
 }
-

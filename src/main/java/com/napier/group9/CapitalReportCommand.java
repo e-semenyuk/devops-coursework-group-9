@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.List;
 
-/** Validates capital-report arguments and returns a process exit status. */
+/** Exit codes: 0 success, 1 database error, 2 invalid input. */
 final class CapitalReportCommand {
     private CapitalReportCommand() {
     }
@@ -61,7 +61,7 @@ final class CapitalReportCommand {
             errors.println(exception.getMessage());
             return 2;
         } catch (SQLException exception) {
-            // Driver messages may contain connection details; do not expose them.
+            // Keep connection details out of errors.
             errors.println("Could not generate capital-city report. Check the database connection and world data.");
             return 1;
         }

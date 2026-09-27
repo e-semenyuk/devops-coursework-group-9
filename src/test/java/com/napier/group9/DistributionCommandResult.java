@@ -18,4 +18,3 @@ record DistributionCommandResult(int status, String output, String errors) {
         return stream.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
     }
 }
-
