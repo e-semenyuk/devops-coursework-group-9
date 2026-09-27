@@ -19,7 +19,7 @@ public final class App {
             return;
         }
 
-        if (args.length == 1 && "--countries-by-population".equals(args[0])) {
+        if (args.length == 1 && "--pb-01".equals(args[0])) {
             try {
                 printCountriesByPopulation(config);
             } catch (SQLException exception) {
@@ -33,7 +33,7 @@ public final class App {
         System.out.println("Population Reporting System — Group 9");
         System.out.printf("Database: %s:%d/%s as %s%n",
                 config.host(), config.port(), config.database(), config.username());
-        System.out.println("Use --countries-by-population to list all countries by population.");
+        System.out.println("Use --pb-01 to list all countries by population.");
     }
 
     private static void printCountriesByPopulation(DatabaseConfig config) throws SQLException {
