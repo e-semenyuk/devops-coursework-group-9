@@ -50,4 +50,3 @@ final class DistributionTestDatabase implements AutoCloseable {
         keeper.close();
     }
 }
-

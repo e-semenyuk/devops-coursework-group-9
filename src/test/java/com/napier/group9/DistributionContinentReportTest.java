@@ -71,4 +71,3 @@ class DistributionContinentReportTest {
                 result.errors());
     }
 }
-

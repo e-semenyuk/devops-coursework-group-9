@@ -1,7 +1,7 @@
 # Docker end-to-end verification
 
-Verified on 2026-09-27 using application source at `c08fde4`, containing issues
-#20–#32 except #18/#19, plus the previously completed capital reports.
+Verified on 2026-09-27 using application source at `c08fde4`, containing all
+thirteen reports for issues #20–#32. Issues #18 and #19 are excluded.
 
 The existing multi-stage Dockerfile built and tested the application with Java 17
 and Maven, then packaged it in the Java 17 runtime image. All 114 automated tests
@@ -75,4 +75,3 @@ docker compose run --rm app PB-25
 The test run used the same services with a local override for the isolated fixture
 mount and removal of host port publishing. Its output logs and helper script are
 in the ignored `target/docker-e2e-results/` and `target/docker-e2e.ps1` locally.
-

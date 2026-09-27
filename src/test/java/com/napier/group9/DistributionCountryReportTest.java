@@ -78,4 +78,3 @@ class DistributionCountryReportTest {
         assertFalse(result.errors().contains("private"));
     }
 }
-

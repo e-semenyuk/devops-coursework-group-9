@@ -64,4 +64,3 @@ class DistributionRegionReportTest {
         assertFalse(result.errors().contains("private"));
     }
 }
-

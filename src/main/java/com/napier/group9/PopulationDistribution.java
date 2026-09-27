@@ -26,4 +26,3 @@ public record PopulationDistribution(String name, long totalPopulation, long cit
                 .toPlainString() + "%";
     }
 }
-
