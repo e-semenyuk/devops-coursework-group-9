@@ -22,23 +22,41 @@ public final class CapitalCityRepository {
     }
 
     public List<CapitalCity> findAll() throws SQLException {
+        return find("", null);
+    }
+
+    public List<CapitalCity> findByContinent(String continent) throws SQLException {
+        return find("WHERE country.Continent = ?", requireArea(continent, "Continent"));
+    }
+
+    private static String requireArea(String area, String label) {
+        if (area == null || area.isBlank()) {
+            throw new IllegalArgumentException(label + " must not be blank.");
+        }
+        return area.strip();
+    }
+
+    private List<CapitalCity> find(String filter, String area) throws SQLException {
         String sql = """
                 SELECT city.Name AS CapitalName, country.Name AS CountryName,
                        city.Population
                 FROM country
                 INNER JOIN city ON city.ID = country.Capital
                                AND city.CountryCode = country.Code
-                ORDER BY city.Population DESC, city.Name ASC, country.Code ASC
-                """;
+                """ + filter + " ORDER BY city.Population DESC, city.Name ASC, country.Code ASC";
         try (Connection connection = connections.open();
-             PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet result = statement.executeQuery()) {
-            List<CapitalCity> capitals = new ArrayList<>();
-            while (result.next()) {
-                capitals.add(new CapitalCity(result.getString("CapitalName").trim(),
-                        result.getString("CountryName").trim(), result.getLong("Population")));
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            if (area != null) {
+                statement.setString(1, area);
             }
-            return capitals;
+            try (ResultSet result = statement.executeQuery()) {
+                List<CapitalCity> capitals = new ArrayList<>();
+                while (result.next()) {
+                    capitals.add(new CapitalCity(result.getString("CapitalName").trim(),
+                            result.getString("CountryName").trim(), result.getLong("Population")));
+                }
+                return capitals;
+            }
         }
     }
 

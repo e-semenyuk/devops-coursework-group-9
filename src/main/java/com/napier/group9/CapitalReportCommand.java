@@ -10,20 +10,30 @@ final class CapitalReportCommand {
     }
 
     static boolean supports(String command) {
-        return "--capitals-world".equals(command);
+        return "--capitals-world".equals(command) || "--capitals-continent".equals(command);
     }
 
     static String usage() {
-        return "Capital report: --capitals-world";
+        return "Capital reports: --capitals-world | --capitals-continent <continent>";
     }
 
     static int run(String[] args, CapitalCityRepository repository,
                    PrintStream output, PrintStream errors) {
         try {
-            if (args.length != 1 || !supports(args[0])) {
+            if (args.length == 0) {
                 throw new IllegalArgumentException(usage());
             }
-            List<CapitalCity> capitals = repository.findAll();
+            List<CapitalCity> capitals = switch (args[0]) {
+                case "--capitals-world" -> {
+                    requireArguments(args, 1);
+                    yield repository.findAll();
+                }
+                case "--capitals-continent" -> {
+                    requireArguments(args, 2);
+                    yield repository.findByContinent(args[1]);
+                }
+                default -> throw new IllegalArgumentException(usage());
+            };
             CapitalReportFormatter.print(capitals, output);
             return 0;
         } catch (IllegalArgumentException exception) {
@@ -33,6 +43,12 @@ final class CapitalReportCommand {
             // Driver messages may contain connection details; do not expose them.
             errors.println("Could not generate capital-city report. Check the database connection and world data.");
             return 1;
+        }
+    }
+
+    private static void requireArguments(String[] args, int count) {
+        if (args.length != count) {
+            throw new IllegalArgumentException(usage());
         }
     }
 }
