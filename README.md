@@ -80,7 +80,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.m
 
 Additional members and formal Scrum roles will be recorded when confirmed by the team.
 
-## Capital-city reports
+## Implemented reports
+
+| Requirement | Report | Implemented | Evidence |
+| --- | --- | --- | --- |
+| PB-13 | Top N cities in a continent | Yes | [Results](docs/reports/pb-13.md) |
+| PB-17 | Capital cities in the world | Yes | [Results](docs/reports/pb-17.md) |
+| PB-18 | Capital cities in a continent | Yes | [Results](docs/reports/pb-18.md) |
+| PB-19 | Capital cities in a region | Yes | [Results](docs/reports/pb-19.md) |
+| PB-20 | Top N capital cities in the world | Yes | [Results](docs/reports/pb-20.md) |
+| PB-21 | Top N capital cities in a continent | Yes | [Results](docs/reports/pb-21.md) |
+| PB-22 | Top N capital cities in a region | Yes | [Results](docs/reports/pb-22.md) |
 
 Capital-city report commands and verification evidence are documented in
 [PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md), [PB-19](docs/reports/pb-19.md), [PB-20](docs/reports/pb-20.md), [PB-21](docs/reports/pb-21.md), [PB-22](docs/reports/pb-22.md).

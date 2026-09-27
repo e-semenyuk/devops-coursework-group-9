@@ -13,6 +13,15 @@ public final class App {
     public static void main(String[] args) {
         DatabaseConfig config = DatabaseConfig.fromEnvironment();
 
+        if (args.length > 0 && CityReportCommand.supports(args[0])) {
+            int status = CityReportCommand.run(args,
+                    new CityPopulationRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
         if (args.length > 0 && CapitalReportCommand.supports(args[0])) {
             int status = CapitalReportCommand.run(args,
                     new CapitalCityRepository(config), System.out, System.err);
@@ -23,6 +32,7 @@ public final class App {
         }
 
         if (args.length == 0) {
+            System.out.println(CityReportCommand.usage());
             System.out.println(CapitalReportCommand.usage());
         }
 
