@@ -29,6 +29,10 @@ public final class CapitalCityRepository {
         return find("WHERE country.Continent = ?", requireArea(continent, "Continent"));
     }
 
+    public List<CapitalCity> findByRegion(String region) throws SQLException {
+        return find("WHERE country.Region = ?", requireArea(region, "Region"));
+    }
+
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
             throw new IllegalArgumentException(label + " must not be blank.");
