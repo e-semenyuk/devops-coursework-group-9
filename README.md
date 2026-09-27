@@ -83,4 +83,4 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 ## Capital-city reports
 
 Capital-city report commands and verification evidence are documented in
-[PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md).
+[PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md), [PB-19](docs/reports/pb-19.md).
