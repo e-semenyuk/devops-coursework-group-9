@@ -24,6 +24,10 @@ public final class CityPopulationRepository {
         return find("WHERE country.Continent = ?", requireArea(continent, "Continent"), requireLimit(limit));
     }
 
+    public List<CityPopulation> findTopByRegion(String region, int limit) throws SQLException {
+        return find("WHERE country.Region = ?", requireArea(region, "Region"), requireLimit(limit));
+    }
+
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
             throw new IllegalArgumentException(label + " must not be blank.");
