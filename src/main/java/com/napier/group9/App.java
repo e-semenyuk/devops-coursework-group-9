@@ -13,6 +13,19 @@ public final class App {
     public static void main(String[] args) {
         DatabaseConfig config = DatabaseConfig.fromEnvironment();
 
+        if (args.length > 0 && CapitalReportCommand.supports(args[0])) {
+            int status = CapitalReportCommand.run(args,
+                    new CapitalCityRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
+        if (args.length == 0) {
+            System.out.println(CapitalReportCommand.usage());
+        }
+
         if (args.length == 1 && "--healthcheck".equals(args[0])) {
             verifyDatabase(config);
             return;

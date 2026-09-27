@@ -13,6 +13,7 @@ on:
       - master
       - develop
       - release
+      - "codex/**"
 
 permissions:
   contents: read
