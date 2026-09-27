@@ -1,6 +1,9 @@
 # Population Reporting System
 
-[![CI](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml/badge.svg)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml)
+[![Master CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=master&label=master)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Develop CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=develop&label=develop)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Adevelop)
+![GitHub Release](https://img.shields.io/github/v/release/e-semenyuk/devops-coursework-group-9)
+![GitHub License](https://img.shields.io/github/license/e-semenyuk/devops-coursework-group-9)
 
 Coursework repository for **SET09803 DevOps Global Online**, **Group 9**.
 
@@ -70,7 +73,33 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.m
 | --- | --- |
 | Eugene Semenyuk | [@e-semenyuk](https://github.com/e-semenyuk) |
 | Alexandra Gombitova | [@AlexandraGombitova](https://github.com/AlexandraGombitova) |
-| Bohdan Katsevych | To be confirmed |
-| Jerry Ebanks | To be confirmed |
+| Bohdan Katsevych | [@bkatsevych003](https://github.com/bkatsevych003)|
+| Jerry Ebanks | [@40799682](https://github.com/40799682) |
+| Trust Okunfeyiwa | [@Trust1Ok](https://github.com/Trust1Ok) |
+| Mashri Alhumidi | [@mshary-web](https://github.com/mshary-web) |
 
 Additional members and formal Scrum roles will be recorded when confirmed by the team.
+
+## Implemented reports
+
+| Requirement | Report | Implemented | Evidence |
+| --- | --- | --- | --- |
+| PB-13 | Top N cities in a continent | Yes | [Results](docs/reports/pb-13.md) |
+| PB-14 | Top N cities in a region | Yes | [Results](docs/reports/pb-14.md) |
+| PB-15 | Top N cities in a country | Yes | [Results](docs/reports/pb-15.md) |
+| PB-16 | Top N cities in a district | Yes | [Results](docs/reports/pb-16.md) |
+| PB-17 | Capital cities in the world | Yes | [Results](docs/reports/pb-17.md) |
+| PB-18 | Capital cities in a continent | Yes | [Results](docs/reports/pb-18.md) |
+| PB-19 | Capital cities in a region | Yes | [Results](docs/reports/pb-19.md) |
+| PB-20 | Top N capital cities in the world | Yes | [Results](docs/reports/pb-20.md) |
+| PB-21 | Top N capital cities in a continent | Yes | [Results](docs/reports/pb-21.md) |
+| PB-22 | Top N capital cities in a region | Yes | [Results](docs/reports/pb-22.md) |
+| PB-23 | Population distribution by continent | Yes | [Results](docs/reports/pb-23.md) |
+| PB-24 | Population distribution by region | Yes | [Results](docs/reports/pb-24.md) |
+| PB-25 | Population distribution by country | Yes | [Results](docs/reports/pb-25.md) |
+
+All thirteen reports above were also verified together through Docker Compose:
+[Docker end-to-end results](docs/reports/docker-e2e.md).
+
+Capital-city report commands and verification evidence are documented in
+[PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md), [PB-19](docs/reports/pb-19.md), [PB-20](docs/reports/pb-20.md), [PB-21](docs/reports/pb-21.md), [PB-22](docs/reports/pb-22.md).
