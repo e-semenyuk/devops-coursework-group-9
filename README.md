@@ -86,6 +86,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 | --- | --- | --- | --- |
 | PB-13 | Top N cities in a continent | Yes | [Results](docs/reports/pb-13.md) |
 | PB-14 | Top N cities in a region | Yes | [Results](docs/reports/pb-14.md) |
+| PB-15 | Top N cities in a country | Yes | [Results](docs/reports/pb-15.md) |
 | PB-17 | Capital cities in the world | Yes | [Results](docs/reports/pb-17.md) |
 | PB-18 | Capital cities in a continent | Yes | [Results](docs/reports/pb-18.md) |
 | PB-19 | Capital cities in a region | Yes | [Results](docs/reports/pb-19.md) |
