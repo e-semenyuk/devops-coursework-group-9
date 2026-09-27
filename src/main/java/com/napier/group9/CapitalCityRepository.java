@@ -22,15 +22,26 @@ public final class CapitalCityRepository {
     }
 
     public List<CapitalCity> findAll() throws SQLException {
-        return find("", null);
+        return find("", null, null);
     }
 
     public List<CapitalCity> findByContinent(String continent) throws SQLException {
-        return find("WHERE country.Continent = ?", requireArea(continent, "Continent"));
+        return find("WHERE country.Continent = ?", requireArea(continent, "Continent"), null);
     }
 
     public List<CapitalCity> findByRegion(String region) throws SQLException {
-        return find("WHERE country.Region = ?", requireArea(region, "Region"));
+        return find("WHERE country.Region = ?", requireArea(region, "Region"), null);
+    }
+
+    public List<CapitalCity> findTop(int limit) throws SQLException {
+        return find("", null, requireLimit(limit));
+    }
+
+    private static int requireLimit(int limit) {
+        if (limit <= 0) {
+            throw new IllegalArgumentException("N must be a positive integer.");
+        }
+        return limit;
     }
 
     private static String requireArea(String area, String label) {
@@ -40,18 +51,23 @@ public final class CapitalCityRepository {
         return area.strip();
     }
 
-    private List<CapitalCity> find(String filter, String area) throws SQLException {
+    private List<CapitalCity> find(String filter, String area, Integer limit) throws SQLException {
         String sql = """
                 SELECT city.Name AS CapitalName, country.Name AS CountryName,
                        city.Population
                 FROM country
                 INNER JOIN city ON city.ID = country.Capital
                                AND city.CountryCode = country.Code
-                """ + filter + " ORDER BY city.Population DESC, city.Name ASC, country.Code ASC";
+                """ + filter + " ORDER BY city.Population DESC, city.Name ASC, country.Code ASC"
+                + (limit == null ? "" : " LIMIT ?");
         try (Connection connection = connections.open();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+            int parameter = 1;
             if (area != null) {
-                statement.setString(1, area);
+                statement.setString(parameter++, area);
+            }
+            if (limit != null) {
+                statement.setInt(parameter, limit);
             }
             try (ResultSet result = statement.executeQuery()) {
                 List<CapitalCity> capitals = new ArrayList<>();
