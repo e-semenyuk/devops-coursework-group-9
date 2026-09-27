@@ -12,13 +12,14 @@ final class CapitalReportCommand {
     static boolean supports(String command) {
         return "--capitals-world".equals(command) || "--capitals-continent".equals(command)
                 || "--capitals-region".equals(command) || "--top-capitals-world".equals(command)
-                || "--top-capitals-continent".equals(command);
+                || "--top-capitals-continent".equals(command) || "--top-capitals-region".equals(command);
     }
 
     static String usage() {
         return "Capital reports: --capitals-world | --capitals-continent <continent>"
                 + " | --capitals-region <region> | --top-capitals-world <N>"
-                + " | --top-capitals-continent <continent> <N>";
+                + " | --top-capitals-continent <continent> <N>"
+                + " | --top-capitals-region <region> <N>";
     }
 
     static int run(String[] args, CapitalCityRepository repository,
@@ -47,6 +48,10 @@ final class CapitalReportCommand {
                 case "--top-capitals-continent" -> {
                     requireArguments(args, 3);
                     yield repository.findTopByContinent(args[1], parseLimit(args[2]));
+                }
+                case "--top-capitals-region" -> {
+                    requireArguments(args, 3);
+                    yield repository.findTopByRegion(args[1], parseLimit(args[2]));
                 }
                 default -> throw new IllegalArgumentException(usage());
             };

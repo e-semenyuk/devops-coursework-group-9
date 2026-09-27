@@ -41,6 +41,10 @@ public final class CapitalCityRepository {
         return find("WHERE country.Continent = ?", requireArea(continent, "Continent"), requireLimit(limit));
     }
 
+    public List<CapitalCity> findTopByRegion(String region, int limit) throws SQLException {
+        return find("WHERE country.Region = ?", requireArea(region, "Region"), requireLimit(limit));
+    }
+
     private static int requireLimit(int limit) {
         if (limit <= 0) {
             throw new IllegalArgumentException("N must be a positive integer.");
