@@ -12,11 +12,12 @@ final class CityReportCommand {
     static boolean supports(String command) {
         return "--top-cities-continent".equals(command) || "PB-13".equals(command)
                 || "--top-cities-region".equals(command) || "PB-14".equals(command)
-                || "--top-cities-country".equals(command) || "PB-15".equals(command);
+                || "--top-cities-country".equals(command) || "PB-15".equals(command)
+                || "--top-cities-district".equals(command) || "PB-16".equals(command);
     }
 
     static String usage() {
-        return "City reports: PB-13 (or --top-cities-continent) <continent> <N> | PB-14 (or --top-cities-region) <region> <N> | PB-15 (or --top-cities-country) <country> <N>";
+        return "City reports: PB-13 (or --top-cities-continent) <continent> <N> | PB-14 (or --top-cities-region) <region> <N> | PB-15 (or --top-cities-country) <country> <N> | PB-16 (or --top-cities-district) <district> <N>";
     }
 
     static int run(String[] args, CityPopulationRepository repository,
@@ -37,6 +38,10 @@ final class CityReportCommand {
                 case "PB-15", "--top-cities-country" -> {
                     requireArguments(args, 3);
                     yield repository.findTopByCountry(args[1], parseLimit(args[2]));
+                }
+                case "PB-16", "--top-cities-district" -> {
+                    requireArguments(args, 3);
+                    yield repository.findTopByDistrict(args[1], parseLimit(args[2]));
                 }
                 default -> throw new IllegalArgumentException(usage());
             };
