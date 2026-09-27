@@ -11,12 +11,12 @@ final class CapitalReportCommand {
 
     static boolean supports(String command) {
         return "--capitals-world".equals(command) || "--capitals-continent".equals(command)
-                || "--capitals-region".equals(command);
+                || "--capitals-region".equals(command) || "--top-capitals-world".equals(command);
     }
 
     static String usage() {
         return "Capital reports: --capitals-world | --capitals-continent <continent>"
-                + " | --capitals-region <region>";
+                + " | --capitals-region <region> | --top-capitals-world <N>";
     }
 
     static int run(String[] args, CapitalCityRepository repository,
@@ -38,6 +38,10 @@ final class CapitalReportCommand {
                     requireArguments(args, 2);
                     yield repository.findByRegion(args[1]);
                 }
+                case "--top-capitals-world" -> {
+                    requireArguments(args, 2);
+                    yield repository.findTop(parseLimit(args[1]));
+                }
                 default -> throw new IllegalArgumentException(usage());
             };
             CapitalReportFormatter.print(capitals, output);
@@ -55,6 +59,14 @@ final class CapitalReportCommand {
     private static void requireArguments(String[] args, int count) {
         if (args.length != count) {
             throw new IllegalArgumentException(usage());
+        }
+    }
+
+    private static int parseLimit(String value) {
+        try {
+            return Integer.parseInt(value.strip());
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("N must be a positive integer between 1 and 2147483647.");
         }
     }
 }
