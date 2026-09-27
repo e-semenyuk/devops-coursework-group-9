@@ -96,6 +96,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 | PB-22 | Top N capital cities in a region | Yes | [Results](docs/reports/pb-22.md) |
 | PB-23 | Population distribution by continent | Yes | [Results](docs/reports/pb-23.md) |
 | PB-24 | Population distribution by region | Yes | [Results](docs/reports/pb-24.md) |
+| PB-25 | Population distribution by country | Yes | [Results](docs/reports/pb-25.md) |
 
 Capital-city report commands and verification evidence are documented in
 [PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md), [PB-19](docs/reports/pb-19.md), [PB-20](docs/reports/pb-20.md), [PB-21](docs/reports/pb-21.md), [PB-22](docs/reports/pb-22.md).

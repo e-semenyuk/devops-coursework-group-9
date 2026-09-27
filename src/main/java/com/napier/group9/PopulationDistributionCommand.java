@@ -11,12 +11,14 @@ final class PopulationDistributionCommand {
 
     static boolean supports(String command) {
         return "PB-23".equals(command) || "--population-by-continent".equals(command)
-                || "PB-24".equals(command) || "--population-by-region".equals(command);
+                || "PB-24".equals(command) || "--population-by-region".equals(command)
+                || "PB-25".equals(command) || "--population-by-country".equals(command);
     }
 
     static String usage() {
         return "Population distribution: PB-23 (or --population-by-continent)"
-                + " | PB-24 (or --population-by-region)";
+                + " | PB-24 (or --population-by-region)"
+                + " | PB-25 (or --population-by-country)";
     }
 
     static int run(String[] args, PopulationDistributionRepository repository,
@@ -29,6 +31,7 @@ final class PopulationDistributionCommand {
             List<PopulationDistribution> groups = switch (args[0]) {
                 case "PB-23", "--population-by-continent" -> repository.findByContinent();
                 case "PB-24", "--population-by-region" -> repository.findByRegion();
+                case "PB-25", "--population-by-country" -> repository.findByCountry();
                 default -> throw new IllegalArgumentException(usage());
             };
             PopulationDistributionFormatter.print(groups, output);

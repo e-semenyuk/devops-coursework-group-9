@@ -28,6 +28,10 @@ public final class PopulationDistributionRepository {
         return find("country.Region", "country.Region");
     }
 
+    public List<PopulationDistribution> findByCountry() throws SQLException {
+        return find("country.Name", "country.Name, country.Code");
+    }
+
     // Expressions are fixed by the report methods, never supplied by the caller.
     private List<PopulationDistribution> find(String nameColumn, String groupColumns) throws SQLException {
         String sql = "SELECT " + nameColumn + """
