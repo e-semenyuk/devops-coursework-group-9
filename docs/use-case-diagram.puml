@@ -4,12 +4,13 @@ left to right direction
 
 skinparam packageStyle rectangle
 skinparam shadowing false
+skinparam linetype ortho
 
 actor "Organisation User" as User
 
 rectangle "Population Reporting System" {
 
-    package "Country Reports" {
+    package "Country Reports" as COUNTRY {
         usecase UC01 as "PB-01\nAll countries\nin the world"
         usecase UC02 as "PB-02\nCountries in\na continent"
         usecase UC03 as "PB-03\nCountries in\na region"
@@ -24,7 +25,7 @@ rectangle "Population Reporting System" {
         UC05 -[hidden]down- UC06
     }
 
-    package "City Reports" {
+    package "City Reports" as CITY {
         usecase UC07 as "PB-07\nAll cities\nin the world"
         usecase UC08 as "PB-08\nCities in\na continent"
         usecase UC09 as "PB-09\nCities in\na region"
@@ -47,7 +48,7 @@ rectangle "Population Reporting System" {
         UC15 -[hidden]down- UC16
     }
 
-    package "Capital City Reports" {
+    package "Capital City Reports" as CAPITAL {
         usecase UC17 as "PB-17\nAll capital cities\nin the world"
         usecase UC18 as "PB-18\nCapital cities in\na continent"
         usecase UC19 as "PB-19\nCapital cities in\na region"
@@ -62,7 +63,7 @@ rectangle "Population Reporting System" {
         UC21 -[hidden]down- UC22
     }
 
-    package "Population Reports" {
+    package "Population Reports" as POPREPORT {
         usecase UC23 as "PB-23\nPopulation by\ncontinent"
         usecase UC24 as "PB-24\nPopulation by\nregion"
         usecase UC25 as "PB-25\nPopulation by\ncountry"
@@ -71,7 +72,7 @@ rectangle "Population Reporting System" {
         UC24 -[hidden]down- UC25
     }
 
-    package "Population Totals" {
+    package "Population Totals" as POPTOTAL {
         usecase UC26 as "PB-26\nWorld population"
         usecase UC27 as "PB-27\nContinent population"
         usecase UC28 as "PB-28\nRegion population"
@@ -86,9 +87,16 @@ rectangle "Population Reporting System" {
         UC30 -[hidden]down- UC31
     }
 
-    package "Language Report" {
+    package "Language Report" as LANGUAGE {
         usecase UC32 as "PB-32\nMajor language\npopulation report"
     }
 }
+
+User --> COUNTRY
+User --> CITY
+User --> CAPITAL
+User --> POPREPORT
+User --> POPTOTAL
+User --> LANGUAGE
 
 @enduml
