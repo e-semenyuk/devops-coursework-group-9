@@ -11,11 +11,14 @@ final class PopulationTotalCommand {
 
     static boolean supports(String command) {
         return "PB-30".equals(command)
-                || "--population-district".equals(command);
+                || "--population-district".equals(command)
+                || "PB-31".equals(command)
+                || "--population-city".equals(command);
     }
 
     static String usage() {
-        return "Population totals: PB-30 (or --population-district) <district>";
+        return "Population totals: PB-30 (or --population-district) <district> | "
+                + "PB-31 (or --population-city) <city>";
     }
 
     static int run(String[] args, PopulationTotalRepository repository,
@@ -25,8 +28,11 @@ final class PopulationTotalCommand {
                 throw new IllegalArgumentException(usage());
             }
 
-            Optional<PopulationTotal> total =
-                    repository.findByDistrict(args[1]);
+            Optional<PopulationTotal> total = switch (args[0]) {
+                case "PB-30", "--population-district" -> repository.findByDistrict(args[1]);
+                case "PB-31", "--population-city" -> repository.findByCity(args[1]);
+                default -> throw new IllegalArgumentException(usage());
+            };
 
             PopulationTotalFormatter.print(total, output);
             return 0;
