@@ -26,6 +26,16 @@ final class PopulationTotalTestDatabase implements AutoCloseable {
                     (2, 'San Pedro', 'BLZ', 'Belize', 20000),
                     (3, 'Orange Walk Town', 'BLZ', 'Orange Walk', 15000),
                     (4, 'Another Town', 'BLZ', 'Orange Walk', 5000);
+                CREATE TABLE country (
+                    Code CHAR(3) PRIMARY KEY,
+                    Name VARCHAR(52),
+                    Population BIGINT
+                );
+                
+                INSERT INTO country VALUES
+                    ('AAA', 'Country A', 1000000),
+                    ('BBB', 'Country B', 2000000),
+                    ('CCC', 'Country C', 3000000);
                 """);
     }
 

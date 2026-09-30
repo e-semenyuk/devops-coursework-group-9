@@ -90,6 +90,32 @@ public final class PopulationTotalRepository {
             }
         }
     }
+    /**
+     * Returns the total population of the world.
+     *
+     * @return the world population
+     * @throws SQLException if the database query fails
+     */
+    public Optional<PopulationTotal> findWorldPopulation() throws SQLException {
+        String sql = """
+            SELECT 'World' AS AreaName,
+                   SUM(country.Population) AS TotalPopulation
+            FROM country
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet result = statement.executeQuery()) {
+
+            if (!result.next()) {
+                return Optional.empty();
+            }
+
+            return Optional.of(new PopulationTotal(
+                    result.getString("AreaName").trim(),
+                    result.getLong("TotalPopulation")));
+        }
+    }
 
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
