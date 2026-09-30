@@ -22,6 +22,15 @@ public final class App {
             return;
         }
 
+        if (args.length > 0 && PopulationTotalCommand.supports(args[0])) {
+            int status = PopulationTotalCommand.run(args,
+                    new PopulationTotalRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
         if (args.length > 0 && CityReportCommand.supports(args[0])) {
             int status = CityReportCommand.run(args,
                     new CityPopulationRepository(config), System.out, System.err);
@@ -42,6 +51,7 @@ public final class App {
 
         if (args.length == 0) {
             System.out.println(PopulationDistributionCommand.usage());
+            System.out.println(PopulationTotalCommand.usage());
             System.out.println(CityReportCommand.usage());
             System.out.println(CapitalReportCommand.usage());
         }
