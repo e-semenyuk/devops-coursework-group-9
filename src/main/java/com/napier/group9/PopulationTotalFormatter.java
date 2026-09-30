@@ -2,6 +2,7 @@ package com.napier.group9;
 
 import java.io.PrintStream;
 import java.util.Optional;
+import java.util.Locale;
 
 /** Formats population total reports. */
 public final class PopulationTotalFormatter {
@@ -16,6 +17,6 @@ public final class PopulationTotalFormatter {
 
         PopulationTotal result = total.get();
         output.println("Name | Population");
-        output.printf("%s | %,d%n", result.name(), result.population());
+        output.printf(Locale.US, "%s | %,d%n", result.name(), result.population());
     }
 }
