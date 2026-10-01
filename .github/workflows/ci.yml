@@ -7,12 +7,15 @@ on:
       - develop
       - release
       - "release/**"
+      - "release-*"
       - "feature/**"
   pull_request:
     branches:
       - master
       - develop
       - release
+      - "release/**"
+      - "release-*"
       - "codex/**"
 
 permissions:

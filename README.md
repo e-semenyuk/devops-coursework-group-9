@@ -63,7 +63,7 @@ Place the coursework-provided SQL import file in `database/` before starting Com
 3. Keep commits small, meaningful, and authored by the person who did the work.
 4. Open a Pull Request into `develop` and link the issue with `Closes #<number>`.
 5. Obtain at least one team review and pass CI before merging.
-6. Use `release/*` for release preparation and merge approved releases into `master` and back into `develop`.
+6. Prepare releases on `release-<version>` branches, merge reviewed releases into `master`, tag them, and merge the release branch back into `develop`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), and [Project Plan](docs/PROJECT_PLAN.md).
 
@@ -81,6 +81,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.m
 Additional members and formal Scrum roles will be recorded when confirmed by the team.
 
 ## Implemented reports
+
+**13 of 32 requirements have been implemented (40.625%).**
+This count covers reports merged into `master`; work on unmerged branches is excluded.
 
 | Requirement | Report | Implemented | Evidence |
 | --- | --- | --- | --- |
