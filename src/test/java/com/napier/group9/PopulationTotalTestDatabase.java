@@ -29,13 +29,14 @@ final class PopulationTotalTestDatabase implements AutoCloseable {
                 CREATE TABLE country (
                     Code CHAR(3) PRIMARY KEY,
                     Name VARCHAR(52),
+                    Continent VARCHAR(30),
                     Population BIGINT
                 );
                 
                 INSERT INTO country VALUES
-                    ('AAA', 'Country A', 1000000),
-                    ('BBB', 'Country B', 2000000),
-                    ('CCC', 'Country C', 3000000);
+                    ('AAA', 'Country A', 'Europe', 1000000),
+                    ('BBB', 'Country B', 'Europe', 2000000),
+                    ('CCC', 'Country C', 'Asia', 3000000);
                 """);
     }
 
