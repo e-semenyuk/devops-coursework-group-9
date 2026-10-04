@@ -65,7 +65,7 @@ Place the coursework-provided SQL import file in `database/` before starting Com
 5. Obtain at least one team review and pass CI before merging.
 6. Prepare releases on `release-<version>` branches, merge reviewed releases into `master`, tag them, and merge the release branch back into `develop`.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), and [Project Plan](docs/PROJECT_PLAN.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), [Project Plan](docs/PROJECT_PLAN.md), and [Bug reporting](docs/BUG_REPORTING.md).
 
 ## Team
 
