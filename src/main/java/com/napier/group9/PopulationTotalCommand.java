@@ -10,23 +10,52 @@ final class PopulationTotalCommand {
     }
 
     static boolean supports(String command) {
-        return "PB-30".equals(command)
-                || "--population-district".equals(command);
+        return "PB-26".equals(command)
+                || "--population-world".equals(command)
+                || "PB-30".equals(command)
+                || "--population-district".equals(command)
+                || "PB-31".equals(command)
+                || "--population-city".equals(command);
     }
 
     static String usage() {
-        return "Population totals: PB-30 (or --population-district) <district>";
+        return "Population totals: PB-26 (or --population-world) | "
+                + "PB-30 (or --population-district) <district> | "
+                + "PB-31 (or --population-city) <city>";
     }
 
     static int run(String[] args, PopulationTotalRepository repository,
                    PrintStream output, PrintStream errors) {
         try {
-            if (args.length != 2 || !supports(args[0])) {
+            if (args.length == 0 || !supports(args[0])) {
                 throw new IllegalArgumentException(usage());
             }
 
-            Optional<PopulationTotal> total =
-                    repository.findByDistrict(args[1]);
+
+            Optional<PopulationTotal> total = switch (args[0]) {
+                case "PB-26", "--population-world" -> {
+                    if (args.length != 1) {
+                        throw new IllegalArgumentException(usage());
+                    }
+                    yield repository.findWorldPopulation();
+                }
+
+                case "PB-30", "--population-district" -> {
+                    if (args.length != 2) {
+                        throw new IllegalArgumentException(usage());
+                    }
+                    yield repository.findByDistrict(args[1]);
+                }
+
+                case "PB-31", "--population-city" -> {
+                    if (args.length != 2) {
+                        throw new IllegalArgumentException(usage());
+                    }
+                    yield repository.findByCity(args[1]);
+                }
+
+                default -> throw new IllegalArgumentException(usage());
+            };
 
             PopulationTotalFormatter.print(total, output);
             return 0;
