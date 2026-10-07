@@ -64,7 +64,7 @@ Place the coursework-provided SQL import file in `database/` before starting Com
 3. Keep commits small, meaningful, and authored by the person who did the work.
 4. Open a Pull Request into `develop` and link the issue with `Closes #<number>`.
 5. Obtain at least one team review and pass CI before merging.
-6. Prepare releases on `release-<version>` branches, merge reviewed releases into `master`, tag them, and merge the release branch back into `develop`.
+6. Promote each release through `develop` → `release` → `master` → `develop`; tag the released `master` merge commit and publish the GitHub release.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), [Project Plan](docs/PROJECT_PLAN.md), and [Bug reporting](docs/BUG_REPORTING.md).
 
