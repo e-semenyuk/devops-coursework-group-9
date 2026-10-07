@@ -47,8 +47,6 @@ Do not rewrite existing merges, force-push protected branches, move published ta
 `master`, `develop`, or `release` to repair a missed release step. Delete a completed feature
 branch only after its changes are included in both `master` and `develop`.
 
-Do not rewrite existing merges or move published tags to repair a missed release step. Prepare the next version through this workflow.
-
 ## Commit conventions
 
 Use focused commits with a conventional prefix:
