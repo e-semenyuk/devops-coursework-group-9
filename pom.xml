@@ -6,7 +6,7 @@
 
     <groupId>com.napier</groupId>
     <artifactId>population-reporting-system</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.0</version>
     <name>Population Reporting System</name>
     <description>SET09803 DevOps Group 9 coursework</description>
 

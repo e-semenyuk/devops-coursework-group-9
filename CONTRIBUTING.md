@@ -31,7 +31,7 @@ Open a Pull Request into `develop`, link its issue, request review, and wait for
 
 ## Release workflow
 
-The next proposed report release is `0.2.0`; `v0.1.0` already marks the project foundation.
+`v0.1.0` marks the project foundation and `v0.2.0` the first report release.
 
 1. Merge completed feature PRs into `develop` after another team member reviews them and CI passes.
 2. Create `release-0.2.0` from the updated `develop` branch. Set the Maven project version to `0.2.0` on that branch and update the README completion count and release notes.

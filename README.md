@@ -66,7 +66,7 @@ Place the coursework-provided SQL import file in `database/` before starting Com
 5. Obtain at least one team review and pass CI before merging.
 6. Prepare releases on `release-<version>` branches, merge reviewed releases into `master`, tag them, and merge the release branch back into `develop`.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), and [Project Plan](docs/PROJECT_PLAN.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), [Project Plan](docs/PROJECT_PLAN.md), and [Release Notes](docs/RELEASE_NOTES.md).
 
 ## Team
 
@@ -83,7 +83,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 
 ## Implemented reports
 
-**13 of 32 requirements have been implemented (40.625%).**
+**18 of 32 requirements have been implemented (56.25%).**
 This count covers reports merged into `master`; work on unmerged branches is excluded.
 
 | Requirement | Report | Implemented | Evidence |
@@ -101,8 +101,13 @@ This count covers reports merged into `master`; work on unmerged branches is exc
 | PB-23 | Population distribution by continent | Yes | [Results](docs/reports/pb-23.md) |
 | PB-24 | Population distribution by region | Yes | [Results](docs/reports/pb-24.md) |
 | PB-25 | Population distribution by country | Yes | [Results](docs/reports/pb-25.md) |
+| PB-26 | World population | Yes | [Results](docs/reports/pb-26.md) |
+| PB-27 | Selected continent population | Yes | [Results](docs/reports/pb-27.md) |
+| PB-30 | Selected district population | Yes | [Results](docs/reports/pb-30.md) |
+| PB-31 | Selected city population | Yes | [Results](docs/reports/pb-31.md) |
+| PB-32 | Five-language population report | Yes | [Results](docs/reports/pb-32.md) |
 
-All thirteen reports above were also verified together through Docker Compose:
+PB-13 to PB-25 were also verified together through Docker Compose:
 [Docker end-to-end results](docs/reports/docker-e2e.md).
 
 Capital-city report commands and verification evidence are documented in
