@@ -116,7 +116,40 @@ public final class PopulationTotalRepository {
                     result.getLong("TotalPopulation")));
         }
     }
+    /**
+     * Returns the total population of a selected continent.
+     *
+     * @param continent continent name
+     * @return the continent population, or empty when no matching countries exist
+     * @throws SQLException if the database query fails
+     */
+    public Optional<PopulationTotal> findByContinent(String continent) throws SQLException {
+        String selectedContinent = requireArea(continent, "Continent");
 
+        String sql = """
+            SELECT country.Continent AS AreaName,
+                   SUM(country.Population) AS TotalPopulation
+            FROM country
+            WHERE country.Continent = ?
+            GROUP BY country.Continent
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, selectedContinent);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (!result.next()) {
+                    return Optional.empty();
+                }
+
+                return Optional.of(new PopulationTotal(
+                        result.getString("AreaName").trim(),
+                        result.getLong("TotalPopulation")));
+            }
+        }
+    }
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
             throw new IllegalArgumentException(label + " must not be blank.");
