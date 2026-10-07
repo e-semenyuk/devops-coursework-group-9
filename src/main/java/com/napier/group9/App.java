@@ -13,9 +13,27 @@ public final class App {
     public static void main(String[] args) {
         DatabaseConfig config = DatabaseConfig.fromEnvironment();
 
+        if (args.length > 0 && LanguagePopulationCommand.supports(args[0])) {
+            int status = LanguagePopulationCommand.run(args,
+                    new LanguagePopulationRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
         if (args.length > 0 && PopulationDistributionCommand.supports(args[0])) {
             int status = PopulationDistributionCommand.run(args,
                     new PopulationDistributionRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
+        if (args.length > 0 && PopulationTotalCommand.supports(args[0])) {
+            int status = PopulationTotalCommand.run(args,
+                    new PopulationTotalRepository(config), System.out, System.err);
             if (status != 0) {
                 System.exit(status);
             }
@@ -41,7 +59,9 @@ public final class App {
         }
 
         if (args.length == 0) {
+            System.out.println(LanguagePopulationCommand.usage());
             System.out.println(PopulationDistributionCommand.usage());
+            System.out.println(PopulationTotalCommand.usage());
             System.out.println(CityReportCommand.usage());
             System.out.println(CapitalReportCommand.usage());
         }

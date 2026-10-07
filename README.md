@@ -2,6 +2,7 @@
 
 [![Master CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=master&label=master)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Develop CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=develop&label=develop)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Adevelop)
+[![codecov](https://codecov.io/gh/e-semenyuk/devops-coursework-group-9/graph/badge.svg?branch=master)](https://codecov.io/gh/e-semenyuk/devops-coursework-group-9)
 ![GitHub Release](https://img.shields.io/github/v/release/e-semenyuk/devops-coursework-group-9)
 ![GitHub License](https://img.shields.io/github/license/e-semenyuk/devops-coursework-group-9)
 
@@ -63,9 +64,9 @@ Place the coursework-provided SQL import file in `database/` before starting Com
 3. Keep commits small, meaningful, and authored by the person who did the work.
 4. Open a Pull Request into `develop` and link the issue with `Closes #<number>`.
 5. Obtain at least one team review and pass CI before merging.
-6. Use `release/*` for release preparation and merge approved releases into `master` and back into `develop`.
+6. Prepare releases on `release-<version>` branches, merge reviewed releases into `master`, tag them, and merge the release branch back into `develop`.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), and [Project Plan](docs/PROJECT_PLAN.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [Product Backlog](docs/PRODUCT_BACKLOG.md), [Project Plan](docs/PROJECT_PLAN.md), and [Release Notes](docs/RELEASE_NOTES.md).
 
 ## Team
 
@@ -82,6 +83,9 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 
 ## Implemented reports
 
+**18 of 32 requirements have been implemented (56.25%).**
+This count covers reports merged into `master`; work on unmerged branches is excluded.
+
 | Requirement | Report | Implemented | Evidence |
 | --- | --- | --- | --- |
 | PB-13 | Top N cities in a continent | Yes | [Results](docs/reports/pb-13.md) |
@@ -97,8 +101,13 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 | PB-23 | Population distribution by continent | Yes | [Results](docs/reports/pb-23.md) |
 | PB-24 | Population distribution by region | Yes | [Results](docs/reports/pb-24.md) |
 | PB-25 | Population distribution by country | Yes | [Results](docs/reports/pb-25.md) |
+| PB-26 | World population | Yes | [Results](docs/reports/pb-26.md) |
+| PB-27 | Selected continent population | Yes | [Results](docs/reports/pb-27.md) |
+| PB-30 | Selected district population | Yes | [Results](docs/reports/pb-30.md) |
+| PB-31 | Selected city population | Yes | [Results](docs/reports/pb-31.md) |
+| PB-32 | Five-language population report | Yes | [Results](docs/reports/pb-32.md) |
 
-All thirteen reports above were also verified together through Docker Compose:
+PB-13 to PB-25 were also verified together through Docker Compose:
 [Docker end-to-end results](docs/reports/docker-e2e.md).
 
 Capital-city report commands and verification evidence are documented in

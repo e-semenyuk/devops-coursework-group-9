@@ -4,11 +4,13 @@
 
 - `master`: assessed, released state only.
 - `develop`: integration branch for completed work.
-- `release`: stable release-preparation branch required by the coursework checklist.
+- `release`: retained coursework demonstration branch.
+- `release-<version>`: versioned release preparation, branched from `develop`.
 - `feature/<issue>-<description>`: one scoped change, branched from `develop`.
 - `fix/<issue>-<description>`: defect correction, branched from `develop` unless the team agrees otherwise.
 
-Direct commits to `master`, `develop`, and `release` should be avoided after branch protection is enabled.
+Use reviewed Pull Requests for changes to `master` and `develop`. Keep the existing `release` branch.
+Git cannot store both `release` and `release/<version>`, so versioned release branches use a hyphen.
 
 ## Standard workflow
 
@@ -26,6 +28,20 @@ git push -u origin feature/12-country-report
 ```
 
 Open a Pull Request into `develop`, link its issue, request review, and wait for CI. The author must not approve their own Pull Request.
+
+## Release workflow
+
+`v0.1.0` marks the project foundation and `v0.2.0` the first report release.
+
+1. Merge completed feature PRs into `develop` after another team member reviews them and CI passes.
+2. Create `release-0.2.0` from the updated `develop` branch. Set the Maven project version to `0.2.0` on that branch and update the README completion count and release notes.
+3. Run `mvn clean verify`, build the Docker image, and run the documented report checks with the agreed world database. Keep commands and sample results as evidence.
+4. Open a PR from `release-0.2.0` into `master`. Merge with a merge commit only after teammate review and passing CI.
+5. Tag the approved master merge commit `v0.2.0` and publish the GitHub release from that tag. The branch, Maven version and tag must refer to the same release version.
+6. Open a PR from `release-0.2.0` back into `develop` to retain release fixes. Require teammate review and passing CI here too. Advance the development snapshot version in a separate feature PR afterward.
+7. Delete feature and versioned release branches only when their commits are included in both `master` and `develop`. Keep `main` (if present), `master`, `develop`, `release`, and unfinished branches.
+
+Do not rewrite existing merges or move published tags to repair a missed release step. Prepare the next version through this workflow.
 
 ## Commit conventions
 
