@@ -1,0 +1,76 @@
+name: Bug report
+description: Report a reproducible problem in the population reporting system
+title: "[BUG] "
+labels: ["bug", "status: triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a problem. Please remove passwords, connection strings,
+        and other sensitive information from screenshots and logs.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe what went wrong and which report or command is affected.
+      placeholder: "PB-26 returns an incorrect total when..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest repeatable sequence of commands or actions.
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical - blocks use or risks incorrect results
+        - High - a core report is incorrect or unavailable
+        - Medium - a workaround exists
+        - Low - minor usability or documentation problem
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Java version, Docker status and application command where relevant.
+      placeholder: "macOS 26, Java 17, Docker Compose, java -jar ... PB-26"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Attach a screenshot or paste sanitised console output, stack trace, or SQL result.
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      options:
+        - Always
+        - Intermittent
+        - Once
+        - Not yet reproduced by the reporter
+    validations:
+      required: true
