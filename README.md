@@ -2,6 +2,7 @@
 
 [![Master CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=master&label=master)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Develop CI](https://img.shields.io/github/actions/workflow/status/e-semenyuk/devops-coursework-group-9/ci.yml?branch=develop&label=develop)](https://github.com/e-semenyuk/devops-coursework-group-9/actions/workflows/ci.yml?query=branch%3Adevelop)
+[![codecov](https://codecov.io/gh/e-semenyuk/devops-coursework-group-9/graph/badge.svg?branch=master)](https://codecov.io/gh/e-semenyuk/devops-coursework-group-9)
 ![GitHub Release](https://img.shields.io/github/v/release/e-semenyuk/devops-coursework-group-9)
 ![GitHub License](https://img.shields.io/github/license/e-semenyuk/devops-coursework-group-9)
 
