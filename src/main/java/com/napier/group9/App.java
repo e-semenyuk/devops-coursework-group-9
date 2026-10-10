@@ -13,6 +13,15 @@ public final class App {
     public static void main(String[] args) {
         DatabaseConfig config = DatabaseConfig.fromEnvironment();
 
+        if (args.length > 0 && CountryReportCommand.supports(args[0])) {
+            int status = CountryReportCommand.run(args,
+                    new CountryPopulationRepository(config), System.out, System.err);
+            if (status != 0) {
+                System.exit(status);
+            }
+            return;
+        }
+
         if (args.length > 0 && LanguagePopulationCommand.supports(args[0])) {
             int status = LanguagePopulationCommand.run(args,
                     new LanguagePopulationRepository(config), System.out, System.err);
@@ -59,6 +68,7 @@ public final class App {
         }
 
         if (args.length == 0) {
+            System.out.println(CountryReportCommand.usage());
             System.out.println(LanguagePopulationCommand.usage());
             System.out.println(PopulationDistributionCommand.usage());
             System.out.println(PopulationTotalCommand.usage());
