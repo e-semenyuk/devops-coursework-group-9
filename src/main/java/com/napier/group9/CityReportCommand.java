@@ -10,14 +10,19 @@ final class CityReportCommand {
     }
 
     static boolean supports(String command) {
-        return "--top-cities-continent".equals(command) || "PB-13".equals(command)
+        return "--cities-world-population".equals(command) || "PB-07".equals(command)
+                || "--top-cities-continent".equals(command) || "PB-13".equals(command)
                 || "--top-cities-region".equals(command) || "PB-14".equals(command)
                 || "--top-cities-country".equals(command) || "PB-15".equals(command)
                 || "--top-cities-district".equals(command) || "PB-16".equals(command);
     }
 
     static String usage() {
-        return "City reports: PB-13 (or --top-cities-continent) <continent> <N> | PB-14 (or --top-cities-region) <region> <N> | PB-15 (or --top-cities-country) <country> <N> | PB-16 (or --top-cities-district) <district> <N>";
+        return "City reports: PB-07 (or --cities-world-population) | "
+                + "PB-13 (or --top-cities-continent) <continent> <N> | "
+                + "PB-14 (or --top-cities-region) <region> <N> | "
+                + "PB-15 (or --top-cities-country) <country> <N> | "
+                + "PB-16 (or --top-cities-district) <district> <N>";
     }
 
     static int run(String[] args, CityPopulationRepository repository,
@@ -27,6 +32,10 @@ final class CityReportCommand {
                 throw new IllegalArgumentException(usage());
             }
             List<CityPopulation> cities = switch (args[0]) {
+                case "PB-07", "--cities-world-population" -> {
+                    requireArguments(args, 1);
+                    yield repository.findAllByPopulation();
+                }
                 case "PB-13", "--top-cities-continent" -> {
                     requireArguments(args, 3);
                     yield repository.findTopByContinent(args[1], parseLimit(args[2]));
