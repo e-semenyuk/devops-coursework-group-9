@@ -47,6 +47,34 @@ public final class CityPopulationRepository {
         return find("WHERE country.Continent = ?", requireArea(continent, "Continent"), requireLimit(limit));
     }
 
+    public List<CityPopulation> findByRegion(String region) throws SQLException {
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            WHERE country.Region = ?
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, requireArea(region, "Region"));
+
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
+    }
+
     public List<CityPopulation> findTopByRegion(String region, int limit) throws SQLException {
         return find("WHERE country.Region = ?", requireArea(region, "Region"), requireLimit(limit));
     }
