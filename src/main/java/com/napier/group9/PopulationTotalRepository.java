@@ -150,6 +150,41 @@ public final class PopulationTotalRepository {
             }
         }
     }
+    /**
+     * Returns the total population of a selected region.
+     *
+     * @param region region name
+     * @return the region population, or empty when no matching countries exist
+     * @throws SQLException if the database query fails
+     */
+    public Optional<PopulationTotal> findByRegion(String region) throws SQLException {
+        String selectedRegion = requireArea(region, "Region");
+
+        String sql = """
+            SELECT country.Region AS AreaName,
+                   SUM(country.Population) AS TotalPopulation
+            FROM country
+            WHERE country.Region = ?
+            GROUP BY country.Region
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, selectedRegion);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (!result.next()) {
+                    return Optional.empty();
+                }
+
+                return Optional.of(new PopulationTotal(
+                        result.getString("AreaName").trim(),
+                        result.getLong("TotalPopulation")));
+            }
+        }
+    }
+
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
             throw new IllegalArgumentException(label + " must not be blank.");
