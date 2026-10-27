@@ -109,3 +109,39 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 
 Capital-city report commands and verification evidence are documented in
 [PB-17](docs/reports/pb-17.md), [PB-18](docs/reports/pb-18.md), [PB-19](docs/reports/pb-19.md), [PB-20](docs/reports/pb-20.md), [PB-21](docs/reports/pb-21.md), [PB-22](docs/reports/pb-22.md).
+
+## Running unit and MySQL integration tests
+
+The project uses Maven to run unit tests and a separate integration-test profile to check the reporting repositories against MySQL 8.4.
+
+### Unit tests
+
+Run the unit tests using:
+
+mvn clean test
+
+To run the unit tests using Docker when Maven is not installed locally, use this PowerShell command from the project directory:
+
+docker run --rm -v "${PWD}:/workspace" -w /workspace maven:3.9-eclipse-temurin-17 mvn -B clean test
+
+### MySQL integration tests
+
+The integration tests use the SQL fixture in src/test/resources/mysql-fixture.sql. It contains a small dataset with the United Kingdom and London.
+
+Start the project's MySQL 8.4 database using Docker Compose. Create a separate database named world_integration_test and import the fixture into that database. This avoids modifying the main world database.
+
+With the MySQL container running and the test fixture imported, run:
+
+mvn -P integration-tests verify
+
+For local testing through Docker on Windows PowerShell, use:
+
+docker run --rm --network host -v "${PWD}:/workspace" -w /workspace -e DB_HOST=127.0.0.1 -e DB_PORT=3306 -e DB_NAME=world_integration_test -e DB_USER=root -e DB_PASSWORD=example maven:3.9-eclipse-temurin-17 mvn -B -P integration-tests verify
+
+The integration tests verify world population, city reporting, country reporting, and empty results for an unknown continent.
+
+### Continuous integration
+
+GitHub Actions runs unit tests and MySQL integration tests in separate jobs. The integration-test job starts MySQL 8.4, imports the SQL fixture, and executes the Maven integration-tests profile.
+
+The GitHub Actions workflow results provide the test evidence for Code Review 2.
