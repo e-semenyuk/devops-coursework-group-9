@@ -4,7 +4,6 @@ import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.List;
 
-/** Exit codes: 0 success, 1 database error, 2 invalid input. */
 final class CityReportCommand {
     private CityReportCommand() {
     }
@@ -13,6 +12,7 @@ final class CityReportCommand {
         return "--cities-world-population".equals(command) || "PB-07".equals(command)
                 || "--cities-continent-population".equals(command) || "PB-08".equals(command)
                 || "--cities-region-population".equals(command) || "PB-09".equals(command)
+                || "--cities-country-population".equals(command) || "PB-10".equals(command)
                 || "--top-cities-continent".equals(command) || "PB-13".equals(command)
                 || "--top-cities-region".equals(command) || "PB-14".equals(command)
                 || "--top-cities-country".equals(command) || "PB-15".equals(command)
@@ -23,6 +23,7 @@ final class CityReportCommand {
         return "City reports: PB-07 (or --cities-world-population) | "
                 + "PB-08 (or --cities-continent-population) <continent> | "
                 + "PB-09 (or --cities-region-population) <region> | "
+                + "PB-10 (or --cities-country-population) <country> | "
                 + "PB-13 (or --top-cities-continent) <continent> <N> | "
                 + "PB-14 (or --top-cities-region) <region> <N> | "
                 + "PB-15 (or --top-cities-country) <country> <N> | "
@@ -47,6 +48,10 @@ final class CityReportCommand {
                 case "PB-09", "--cities-region-population" -> {
                     requireArguments(args, 2);
                     yield repository.findByRegion(args[1]);
+                }
+                case "PB-10", "--cities-country-population" -> {
+                    requireArguments(args, 2);
+                    yield repository.findByCountry(args[1]);
                 }
                 case "PB-13", "--top-cities-continent" -> {
                     requireArguments(args, 3);
