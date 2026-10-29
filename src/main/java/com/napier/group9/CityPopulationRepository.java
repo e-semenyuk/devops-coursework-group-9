@@ -146,6 +146,34 @@ public final class CityPopulationRepository {
         return find("WHERE city.District = ?", requireArea(district, "District"), requireLimit(limit));
     }
 
+    public List<CityPopulation> findByDistrict(String district) throws SQLException {
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            WHERE city.District = ?
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, requireArea(district, "District"));
+
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
+    }
+
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
             throw new IllegalArgumentException(label + " must not be blank.");
