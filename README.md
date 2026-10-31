@@ -83,11 +83,17 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 
 ## Implemented reports
 
-**19 of 32 requirements have been implemented (59.375%).**
+**26 of 32 requirements have been implemented (81.25%).**
 
 | Requirement | Report | Implemented | Evidence |
 | --- | --- | --- | --- |
 | PB-01 | Countries in the world by population | Yes | [Results](docs/reports/pb-01.md) |
+| PB-02 | Countries in a continent by population | Yes | [Results](docs/reports/pb-02.md) |
+| PB-07 | Cities in the world by population | Yes | [Results](docs/reports/pb-07.md) |
+| PB-08 | Cities in a continent by population | Yes | [Results](docs/reports/pb-08.md) |
+| PB-09 | Cities in a region by population | Yes | [Results](docs/reports/pb-09.md) |
+| PB-10 | Cities in a country by population | Yes | [Results](docs/reports/pb-10.md) |
+| PB-11 | Cities in a district by population | Yes | [Results](docs/reports/pb-11.md) |
 | PB-13 | Top N cities in a continent | Yes | [Results](docs/reports/pb-13.md) |
 | PB-14 | Top N cities in a region | Yes | [Results](docs/reports/pb-14.md) |
 | PB-15 | Top N cities in a country | Yes | [Results](docs/reports/pb-15.md) |
@@ -103,6 +109,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 | PB-25 | Population distribution by country | Yes | [Results](docs/reports/pb-25.md) |
 | PB-26 | World population | Yes | [Results](docs/reports/pb-26.md) |
 | PB-27 | Selected continent population | Yes | [Results](docs/reports/pb-27.md) |
+| PB-28 | Selected region population | Yes | [Results](docs/reports/pb-28.md) |
 | PB-30 | Selected district population | Yes | [Results](docs/reports/pb-30.md) |
 | PB-31 | Selected city population | Yes | [Results](docs/reports/pb-31.md) |
 | PB-32 | Five-language population report | Yes | [Results](docs/reports/pb-32.md) |
