@@ -11,12 +11,14 @@ final class CountryReportCommand {
 
     static boolean supports(String command) {
         return "PB-01".equals(command) || "--countries-world".equals(command)
-            || "PB-02".equals(command) || "--countries-continent".equals(command);
+            || "PB-02".equals(command) || "--countries-continent".equals(command)
+            || "PB-03".equals(command) || "--countries-region".equals(command);
     }
 
     static String usage() {
         return "Country reports: PB-01 (or --countries-world) | "
-            + "PB-02 (or --countries-continent) <continent>";
+            + "PB-02 (or --countries-continent) <continent> | "
+            + "PB-03 (or --countries-region) <region>";
     }
 
     static int run(String[] args, CountryPopulationRepository repository,
@@ -33,6 +35,10 @@ final class CountryReportCommand {
                 case "PB-02", "--countries-continent" -> {
                     requireArguments(args, 2);
                     yield repository.findByContinent(args[1]);
+                }
+                case "PB-03", "--countries-region" -> {
+                    requireArguments(args, 2);
+                    yield repository.findByRegion(args[1]);
                 }
                 default -> throw new IllegalArgumentException(usage());
             };
