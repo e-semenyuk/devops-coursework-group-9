@@ -83,7 +83,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 
 ## Implemented reports
 
-**27 of 32 requirements have been implemented (84.375%).**
+**28 of 32 requirements have been implemented (87.%).**
 
 | Requirement | Report | Implemented | Evidence |
 | --- | --- | --- | --- |
@@ -111,6 +111,7 @@ Additional members and formal Scrum roles will be recorded when confirmed by the
 | PB-26 | World population | Yes | [Results](docs/reports/pb-26.md) |
 | PB-27 | Selected continent population | Yes | [Results](docs/reports/pb-27.md) |
 | PB-28 | Selected region population | Yes | [Results](docs/reports/pb-28.md) |
+| PB-29 | Selected country population | Yes | [Results](docs/reports/pb-29.md) |
 | PB-30 | Selected district population | Yes | [Results](docs/reports/pb-30.md) |
 | PB-31 | Selected city population | Yes | [Results](docs/reports/pb-31.md) |
 | PB-32 | Five-language population report | Yes | [Results](docs/reports/pb-32.md) |

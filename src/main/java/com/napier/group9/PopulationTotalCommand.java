@@ -16,6 +16,8 @@ final class PopulationTotalCommand {
                 || "--population-continent".equals(command)
                 || "PB-28".equals(command)
                 || "--population-region".equals(command)
+                || "PB-29".equals(command)
+                || "--population-country".equals(command)
                 || "PB-30".equals(command)
                 || "--population-district".equals(command)
                 || "PB-31".equals(command)
@@ -26,6 +28,7 @@ final class PopulationTotalCommand {
         return "Population totals: PB-26 (or --population-world) | "
                 + "PB-27 (or --population-continent) <continent> | "
                 + "PB-28 (or --population-region) <region> | "
+                + "PB-29 (or --population-country) <country> | "
                 + "PB-30 (or --population-district) <district> | "
                 + "PB-31 (or --population-city) <city>";
     }
@@ -58,6 +61,13 @@ final class PopulationTotalCommand {
                         throw new IllegalArgumentException(usage());
                     }
                     yield repository.findByRegion(args[1]);
+                }
+
+                case "PB-29", "--population-country" -> {
+                    if (args.length != 2) {
+                        throw new IllegalArgumentException(usage());
+                    }
+                    yield repository.findByCountry(args[1]);
                 }
 
                 case "PB-30", "--population-district" -> {

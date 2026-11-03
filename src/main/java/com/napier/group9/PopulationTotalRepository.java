@@ -184,6 +184,39 @@ public final class PopulationTotalRepository {
             }
         }
     }
+    /**
+     * Returns the population of a selected country.
+     *
+     * @param country country name
+     * @return the country population, or empty when no matching country exists
+     * @throws SQLException if the database query fails
+     */
+    public Optional<PopulationTotal> findByCountry(String country) throws SQLException {
+        String selectedCountry = requireArea(country, "Country");
+
+        String sql = """
+            SELECT country.Name AS AreaName,
+                   country.Population AS TotalPopulation
+            FROM country
+            WHERE country.Name = ?
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, selectedCountry);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (!result.next()) {
+                    return Optional.empty();
+                }
+
+                return Optional.of(new PopulationTotal(
+                        result.getString("AreaName").trim(),
+                        result.getLong("TotalPopulation")));
+            }
+        }
+    }
 
     private static String requireArea(String area, String label) {
         if (area == null || area.isBlank()) {
