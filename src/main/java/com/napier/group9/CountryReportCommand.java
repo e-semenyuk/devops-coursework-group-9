@@ -12,13 +12,15 @@ final class CountryReportCommand {
     static boolean supports(String command) {
         return "PB-01".equals(command) || "--countries-world".equals(command)
             || "PB-02".equals(command) || "--countries-continent".equals(command)
-            || "PB-03".equals(command) || "--countries-region".equals(command);
+            || "PB-03".equals(command) || "--countries-region".equals(command)
+            || "PB-04".equals(command) || "--top-countries-world".equals(command);
     }
 
     static String usage() {
         return "Country reports: PB-01 (or --countries-world) | "
             + "PB-02 (or --countries-continent) <continent> | "
-            + "PB-03 (or --countries-region) <region>";
+            + "PB-03 (or --countries-region) <region> | "
+            + "PB-04 (or --top-countries-world) <N>";
     }
 
     static int run(String[] args, CountryPopulationRepository repository,
@@ -40,6 +42,10 @@ final class CountryReportCommand {
                     requireArguments(args, 2);
                     yield repository.findByRegion(args[1]);
                 }
+                case "PB-04", "--top-countries-world" -> {
+                    requireArguments(args, 2);
+                    yield repository.findTopByPopulation(parseLimit(args[1]));
+                }
                 default -> throw new IllegalArgumentException(usage());
             };
             CountryReportFormatter.print(countries, output);
@@ -56,6 +62,14 @@ final class CountryReportCommand {
     private static void requireArguments(String[] args, int count) {
         if (args.length != count) {
             throw new IllegalArgumentException(usage());
+        }
+    }
+
+    private static int parseLimit(String value) {
+        try {
+            return Integer.parseInt(value.strip());
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("N must be a positive integer between 1 and 2147483647.");
         }
     }
 }
