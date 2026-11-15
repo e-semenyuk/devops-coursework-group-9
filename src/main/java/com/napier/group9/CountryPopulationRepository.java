@@ -137,6 +137,41 @@ public final class CountryPopulationRepository {
         }
     }
 
+    public List<CountryPopulation> findTopByRegion(String region, int limit) throws SQLException {
+        if (limit <= 0) {
+            throw new IllegalArgumentException("N must be a positive integer.");
+        }
+        String sql = """
+                SELECT country.Code, country.Name, country.Continent, country.Region,
+                       country.Population, city.Name AS CapitalName
+                FROM country
+                LEFT JOIN city ON city.ID = country.Capital
+                               AND city.CountryCode = country.Code
+                WHERE country.Region = ?
+                ORDER BY country.Population DESC, country.Name ASC, country.Code ASC
+                LIMIT ?
+                """;
+        String selectedRegion = requireRegion(region);
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, selectedRegion);
+            statement.setInt(2, limit);
+            try (ResultSet result = statement.executeQuery()) {
+                List<CountryPopulation> countries = new ArrayList<>();
+                while (result.next()) {
+                    countries.add(new CountryPopulation(
+                            result.getString("Code").trim(),
+                            result.getString("Name").trim(),
+                            result.getString("Continent").trim(),
+                            result.getString("Region").trim(),
+                            result.getLong("Population"),
+                            result.getString("CapitalName")));
+                }
+                return countries;
+            }
+        }
+    }
+
     private static String requireContinent(String continent) {
         if (continent == null || continent.isBlank()) {
             throw new IllegalArgumentException("Continent must not be blank.");
