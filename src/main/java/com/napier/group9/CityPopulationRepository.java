@@ -43,6 +43,33 @@ public final class CityPopulationRepository {
         }
     }
 
+    public List<CityPopulation> findTopByPopulation(int limit) throws SQLException {
+        requireLimit(limit);
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            LIMIT ?
+            """;
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, limit);
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
+    }
+
     public List<CityPopulation> findByContinent(String continent) throws SQLException {
         String sql = """
             SELECT city.Name AS CityName, country.Name AS CountryName,

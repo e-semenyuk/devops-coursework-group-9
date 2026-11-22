@@ -14,6 +14,7 @@ final class CityReportCommand {
                 || "--cities-region-population".equals(command) || "PB-09".equals(command)
                 || "--cities-country-population".equals(command) || "PB-10".equals(command)
                 || "--cities-district-population".equals(command) || "PB-11".equals(command)
+                || "--top-cities-world".equals(command) || "PB-12".equals(command)
                 || "--top-cities-continent".equals(command) || "PB-13".equals(command)
                 || "--top-cities-region".equals(command) || "PB-14".equals(command)
                 || "--top-cities-country".equals(command) || "PB-15".equals(command)
@@ -26,6 +27,7 @@ final class CityReportCommand {
                 + "PB-09 (or --cities-region-population) <region> | "
                 + "PB-10 (or --cities-country-population) <country> | "
                 + "PB-11 (or --cities-district-population) <district> | "
+                + "PB-12 (or --top-cities-world) <N> | "
                 + "PB-13 (or --top-cities-continent) <continent> <N> | "
                 + "PB-14 (or --top-cities-region) <region> <N> | "
                 + "PB-15 (or --top-cities-country) <country> <N> | "
@@ -58,6 +60,10 @@ final class CityReportCommand {
                 case "PB-11", "--cities-district-population" -> {
                     requireArguments(args, 2);
                     yield repository.findByDistrict(args[1]);
+                }
+                case "PB-12", "--top-cities-world" -> {
+                    requireArguments(args, 2);
+                    yield repository.findTopByPopulation(parseLimit(args[1]));
                 }
                 case "PB-13", "--top-cities-continent" -> {
                     requireArguments(args, 3);
