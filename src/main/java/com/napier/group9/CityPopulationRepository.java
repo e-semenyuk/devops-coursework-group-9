@@ -43,6 +43,33 @@ public final class CityPopulationRepository {
         }
     }
 
+    public List<CityPopulation> findTopByPopulation(int limit) throws SQLException {
+        requireLimit(limit);
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            LIMIT ?
+            """;
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, limit);
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
+    }
+
     public List<CityPopulation> findByContinent(String continent) throws SQLException {
         String sql = """
             SELECT city.Name AS CityName, country.Name AS CountryName,
@@ -75,6 +102,34 @@ public final class CityPopulationRepository {
         return find("WHERE country.Continent = ?", requireArea(continent, "Continent"), requireLimit(limit));
     }
 
+    public List<CityPopulation> findByRegion(String region) throws SQLException {
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            WHERE country.Region = ?
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, requireArea(region, "Region"));
+
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
+    }
+
     public List<CityPopulation> findTopByRegion(String region, int limit) throws SQLException {
         return find("WHERE country.Region = ?", requireArea(region, "Region"), requireLimit(limit));
     }
@@ -83,8 +138,67 @@ public final class CityPopulationRepository {
         return find("WHERE country.Name = ?", requireArea(country, "Country"), requireLimit(limit));
     }
 
+    public List<CityPopulation> findByCountry(String country) throws SQLException {
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            WHERE country.Name = ?
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, requireArea(country, "Country"));
+
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+
+                return cities;
+            }
+        }
+    }
+
     public List<CityPopulation> findTopByDistrict(String district, int limit) throws SQLException {
         return find("WHERE city.District = ?", requireArea(district, "District"), requireLimit(limit));
+    }
+
+    public List<CityPopulation> findByDistrict(String district) throws SQLException {
+        String sql = """
+            SELECT city.Name AS CityName, country.Name AS CountryName,
+                   city.District, city.Population
+            FROM city
+            INNER JOIN country ON country.Code = city.CountryCode
+            WHERE city.District = ?
+            ORDER BY city.Population DESC, city.Name ASC, country.Code ASC, city.ID ASC
+            """;
+
+        try (Connection connection = connections.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, requireArea(district, "District"));
+
+            try (ResultSet result = statement.executeQuery()) {
+                List<CityPopulation> cities = new ArrayList<>();
+                while (result.next()) {
+                    cities.add(new CityPopulation(
+                            result.getString("CityName").trim(),
+                            result.getString("CountryName").trim(),
+                            result.getString("District").trim(),
+                            result.getLong("Population")));
+                }
+                return cities;
+            }
+        }
     }
 
     private static String requireArea(String area, String label) {
